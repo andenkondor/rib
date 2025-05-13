@@ -175,7 +175,7 @@ main() {
   fi
 
   # Use fzf to select resources
-  local selected_resources=$(printf "%s\n" "${all_resources[@]}" | fzf --query "$query" -m --with-nth=3..5 --delimiter="$DELIMITER")
+  local selected_resources=$(printf "%s\n" "${all_resources[@]}" | fzf --query "$query" -m --with-nth=2..5 --delimiter="$DELIMITER")
 
   # Check if user selected anything (fzf returns empty if cancelled with Esc/Ctrl-C)
   if [ -z "$selected_resources" ]; then
