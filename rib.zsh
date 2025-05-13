@@ -120,7 +120,9 @@ main() {
 
   # Get list of subscriptions to process
   local subscription_list=()
-  IFS=',' read -r -a subscription_list <<<"$subscriptions"
+  if [ -n "$subscriptions" ]; then
+    subscription_list=(${(s:,:)subscriptions})
+  fi
 
   # If no subscriptions specified, get all from current account
   if [ ${#subscription_list[@]} -eq 0 ]; then
