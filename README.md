@@ -63,12 +63,24 @@ If you rather want to specify the subscription scope you can add a param to rib:
 rib  --subscriptions=<subscription-1-uuid>,<subscription-2-uuid>,...
 ```
 
-### Enable caching
+### Caching
 
 To really improve your rib experience you need to enable caching.
 Otherwise rib has to retrieve the Azure resources for each invocation which will
 take a decent amount of time.
 
-To run rib with caching do `rib --allow-stale-minutes=1440`.
-In this example rib will only fetch Azure resources when they are older
-than one day. Otherwise it'll just use the cached ones.
+By default, rib will use cached resources if they are less than one day (1440 minutes) old.
+You can customize this behavior using the `--allow-stale-minutes` parameter:
+
+```bash
+# Use default cache duration (1 day)
+rib
+
+# Use cache for up to 30 minutes
+rib --allow-stale-minutes=30
+
+# Use cache for up to 1 week
+rib --allow-stale-minutes=10080
+```
+
+The cache is stored in the directory specified by `RIB_CONFIG_FOLDER` environment variable.
